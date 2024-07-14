@@ -36,7 +36,7 @@ public static class InjecaoDependencia
     private static void ConfigurarBancoDeDados() 
     {
         var connection = _configuration.GetValue<string>("ConnectionString");
-        if (connection == null)
+        if (connection == null || connection == "")
         {
             connection = Environment.GetEnvironmentVariable("CONNECTION");
         }
