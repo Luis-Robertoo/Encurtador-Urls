@@ -38,6 +38,13 @@ public static class InjecaoDependencia
         var connection = _configuration.GetValue<string>("ConnectionString");
         if (connection == null || connection == "")
         {
+            var variaveis = Environment.GetEnvironmentVariables();
+            foreach(var variavel in variaveis)
+            {
+                Console.WriteLine($"{variavel}");
+            }
+            
+
             connection = Environment.GetEnvironmentVariable("CONNECTION");
         }
 
