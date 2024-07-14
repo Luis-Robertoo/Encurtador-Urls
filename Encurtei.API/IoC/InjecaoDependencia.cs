@@ -35,8 +35,14 @@ public static class InjecaoDependencia
 
     private static void ConfigurarBancoDeDados() 
     {
+        var connection = _configuration.GetValue<string>("ConnectionString");
+        if (connection == null)
+        {
+            connection = Environment.GetEnvironmentVariable("CONNECTION");
+        }
+
         _services.AddDbContext<AppDBContext>(
-            options => options.UseSqlServer(_configuration.GetValue<string>("ConnectionString")));
+            options => options.UseSqlServer(connection));
     }
 
 }
