@@ -34,5 +34,6 @@ jobs:
       run: "rsync --delete -avO ${{ env.RSYNC_FLAGS }} ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.DESTINATION }}"
       env:
         RSYNC_FLAGS: '' #--dry-run
-        SSH_HOST: batata
+        SSH_USER: ${{ secrets.DEPLOY_SSH_USER }}
+        SSH_HOST: ${{ secrets.DEPLOY_SSH_HOST }}
         DESTINATION: "~/teste"
