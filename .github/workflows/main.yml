@@ -11,19 +11,21 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Configure SSH
+      env: 
+          KEY_SSH: ${{ secrets.DEPLOY_SSH_KEY }}
+          HOST_SSH: ${{ secrets.DEPLOY_SSH_HOST }}
+          USER_SSH: ${{ secrets.DEPLOY_SSH_USER }}
       run: |
         mkdir -p ~/.ssh/
         echo "$SSH_KEY" > ~/.ssh/deploy.key
         chmod 600 ~/.ssh/deploy.key
         cat >>~/.ssh/config <<END
         Host batata
-          HostName ${{ secrets.DEPLOY_SSH_HOST }}
-          User ${{ secrets.DEPLOY_SSH_USER }}
+          HostName "$HOST_SSH"
+          User "$USER_SSH"
           IdentityFile ~/.ssh/deploy.key
           StrictHostKeyChecking no
         END
-      env:
-        SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
 
     - name: Send files
       run: "rsync --delete -avO ${{ env.RSYNC_FLAGS }} ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.DESTINATION }}"
