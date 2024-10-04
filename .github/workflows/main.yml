@@ -21,7 +21,7 @@ jobs:
         echo "$SSH_KEY" > ~/.ssh/deploy.key
         chmod 600 ~/.ssh/deploy.key
         cat >>~/.ssh/config <<END
-        Host ubuntu
+        Host batata
           HostName $SSH_HOST
           User $SSH_USER
           IdentityFile ~/.ssh/deploy.key
@@ -31,8 +31,9 @@ jobs:
         SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
 
     - name: Send files
-      run: "rsync --delete -avO ${{ env.RSYNC_FLAGS }} ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.DESTINATION }}"
+      run: "rsync --delete -avO ${{ env.RSYNC_FLAGS }} --exclude-from=${{ env.EXCLUDES }} ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.DESTINATION }}"
       env:
         RSYNC_FLAGS: '' #--dry-run
-        SSH_HOST: ubuntu
+        SSH_HOST: batata
+        EXCLUDES: bin/rsync-excludes.txt
         DESTINATION: "~/teste"
