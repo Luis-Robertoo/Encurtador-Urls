@@ -7,30 +7,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - name: "Baixar codigo"
+      uses: actions/checkout@v4
 
-    - name: Configure SSH
-      env: 
-          KEY_SSH: ${{ secrets.DEPLOY_SSH_KEY }}
-          HOST_SSH: ${{ secrets.DEPLOY_SSH_HOST }}
-          USER_SSH: ${{ secrets.DEPLOY_SSH_USER }}
-      run: |
-        mkdir -p ~/.ssh/
-        echo "$SSH_KEY" > ~/.ssh/deploy.key
-        chmod 600 ~/.ssh/deploy.key
-        cat >>~/.ssh/config <<END
-        Host batata
-          HostName "$env:HOST_SSH"
-          User "%USER_SSH%"
-          IdentityFile ~/.ssh/deploy.key
-          StrictHostKeyChecking no
-        END
-
-    - name: Send files
-      run: "rsync --delete -avO ${{ env.RSYNC_FLAGS }} ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.DESTINATION }}"
-      env:
-        RSYNC_FLAGS: '' #--dry-run
-        SSH_USER: ${{ secrets.DEPLOY_SSH_USER }}
-        SSH_HOST: ${{ secrets.DEPLOY_SSH_HOST }}
-        DESTINATION: "~/teste"
+    - name: copiando via SSH
+      uses: appleboy/scp-action@0.1.7
+      with:
+        host: ${{ secrets.DEPLOY_SSH_HOST }}
+        username: ${{ secrets.DEPLOY_SSH_USER }}
+        key: ${{ secrets.DEPLOY_SSH_KEY }}
+        source: "."
+        target: "/teste"
