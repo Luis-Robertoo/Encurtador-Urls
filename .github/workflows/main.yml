@@ -21,8 +21,8 @@ jobs:
         chmod 600 ~/.ssh/deploy.key
         cat >>~/.ssh/config <<END
         Host batata
-          HostName "$HOST_SSH"
-          User "$USER_SSH"
+          HostName "$env:HOST_SSH"
+          User "%USER_SSH%"
           IdentityFile ~/.ssh/deploy.key
           StrictHostKeyChecking no
         END
