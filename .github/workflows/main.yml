@@ -1,9 +1,4 @@
 name: Deploy
-
-env:
-  SSH_USER: ${{ secrets.DEPLOY_SSH_USER }}
-  SSH_HOST: ${{ secrets.DEPLOY_SSH_HOST }}
-
 on: [push]
 
 jobs:
@@ -22,8 +17,8 @@ jobs:
         chmod 600 ~/.ssh/deploy.key
         cat >>~/.ssh/config <<END
         Host batata
-          HostName $SSH_HOST
-          User $SSH_USER
+          HostName ${{ secrets.DEPLOY_SSH_HOST }}
+          User ${{ secrets.DEPLOY_SSH_USER }}
           IdentityFile ~/.ssh/deploy.key
           StrictHostKeyChecking no
         END
