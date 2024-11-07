@@ -31,19 +31,7 @@ public class EncurtadorService(
                 return new ResponseDTO<Link>(link, null);
             }
 
-            var codigo = GerarCodigoUrlEncurtada();
-
-            var protocol = _contextAccessor.HttpContext.Request.Scheme;
-            var host = _contextAccessor.HttpContext.Request.Host;
-
-            var urlEncurtada = $"{protocol}://{host}/{codigo}";
-
-            Console.WriteLine($"Protocolo {protocol}");
-            Console.WriteLine($"host {host}");
-            Console.WriteLine($"path {_contextAccessor.HttpContext.Request.Path}");
-            Console.WriteLine($"codigo {codigo}");
-
-            Console.WriteLine($"{urlEncurtada}");
+            string urlEncurtada = GerarURIEncurtada(_contextAccessor);
 
             link = new Link(
                 urlOriginal,
@@ -67,15 +55,7 @@ public class EncurtadorService(
     {
         try
         {
-            var protocol = _contextAccessor.HttpContext.Request.Scheme;
-            var host = _contextAccessor.HttpContext.Request.Host;
-
-            Console.WriteLine($"Protocolo {protocol}");
-            Console.WriteLine($"host {host}");
-            Console.WriteLine($"path {_contextAccessor.HttpContext.Request.Path}");
-            Console.WriteLine($"codigo {codigo}");
-
-            var urlEncurtada = $"{protocol}://{host}/{codigo}";
+            var urlEncurtada = GerarURIEncurtada(_contextAccessor, codigo);
 
             Console.WriteLine($"{urlEncurtada}");
 
@@ -91,5 +71,31 @@ public class EncurtadorService(
         {
             return new ResponseDTO<string>(null, ex.Message);
         }
+
+
     }
+
+    private string GerarURIEncurtada(IHttpContextAccessor _contextAccessor, string codigo = null)
+    {
+        codigo = codigo is null ? GerarCodigoUrlEncurtada() : codigo;
+
+        var protocol = _contextAccessor.HttpContext.Request.Scheme;
+
+        var routeApi = Environment.GetEnvironmentVariable("ROUTE_API") ?? string.Empty;
+
+        routeApi = routeApi != string.Empty ? $"/{routeApi}" : string.Empty;
+
+        var host = $"{_contextAccessor.HttpContext.Request.Host}{routeApi}";
+
+        var urlEncurtada = $"{protocol}://{host}/{codigo}";
+
+        Console.WriteLine($"Protocolo {protocol}");
+        Console.WriteLine($"host {host}");
+        Console.WriteLine($"routeAPI {Environment.GetEnvironmentVariable("ROUTE_API")}");
+        Console.WriteLine($"codigo {codigo}");
+
+        Console.WriteLine($"{urlEncurtada}");
+        return urlEncurtada;
+    }
+
 }
