@@ -38,6 +38,11 @@ public class EncurtadorService(
 
             var urlEncurtada = $"{protocol}://{host}/{codigo}";
 
+            Console.WriteLine($"Protocolo {protocol}");
+            Console.WriteLine($"host {host}");
+            Console.WriteLine($"codigo {codigo}");
+            Console.WriteLine($"{urlEncurtada}");
+
             link = new Link(
                 urlOriginal,
                 urlEncurtada,
@@ -63,7 +68,14 @@ public class EncurtadorService(
             var protocol = _contextAccessor.HttpContext.Request.Scheme;
             var host = _contextAccessor.HttpContext.Request.Host;
 
+            Console.WriteLine($"Protocolo {protocol}");
+            Console.WriteLine($"host {host}");
+            Console.WriteLine($"codigo {codigo}");
+
             var urlEncurtada = $"{protocol}://{host}/{codigo}";
+
+            Console.WriteLine($"{urlEncurtada}");
+
             var link = await _linkRepository.ObterPorUrlEncurtada(urlEncurtada);
             if(link is null)
             {
