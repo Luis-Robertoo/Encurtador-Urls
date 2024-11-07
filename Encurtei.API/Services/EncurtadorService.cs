@@ -40,7 +40,9 @@ public class EncurtadorService(
 
             Console.WriteLine($"Protocolo {protocol}");
             Console.WriteLine($"host {host}");
+            Console.WriteLine($"path {_contextAccessor.HttpContext.Request.Path}");
             Console.WriteLine($"codigo {codigo}");
+
             Console.WriteLine($"{urlEncurtada}");
 
             link = new Link(
@@ -70,6 +72,7 @@ public class EncurtadorService(
 
             Console.WriteLine($"Protocolo {protocol}");
             Console.WriteLine($"host {host}");
+            Console.WriteLine($"path {_contextAccessor.HttpContext.Request.Path}");
             Console.WriteLine($"codigo {codigo}");
 
             var urlEncurtada = $"{protocol}://{host}/{codigo}";
