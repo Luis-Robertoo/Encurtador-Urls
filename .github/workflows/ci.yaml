@@ -34,5 +34,5 @@ jobs:
       - name: listando arquivos.
         run: ls
         
-      - name: acessando ssl?.
-        run: openssl s_client -connect 8.8.8.8:20
+      - name: build project.
+        run: dotnet build
