@@ -16,7 +16,7 @@ public class EncurtadorService(
         Random rnd = new Random();
 
         int tamanho = rnd.Next(5, 11);
-        var codigo = Guid.NewGuid().ToString().Replace("-","").Substring(0, tamanho);
+        var codigo = Guid.NewGuid().ToString("N").Substring(0, tamanho);
 
         return codigo;
     }
@@ -57,8 +57,6 @@ public class EncurtadorService(
         {
             var urlEncurtada = GerarURIEncurtada(_contextAccessor, codigo);
 
-            Console.WriteLine($"{urlEncurtada}");
-
             var link = await _linkRepository.ObterPorUrlEncurtada(urlEncurtada);
             if(link is null)
             {
@@ -71,8 +69,6 @@ public class EncurtadorService(
         {
             return new ResponseDTO<string>(null, ex.Message);
         }
-
-
     }
 
     private string GerarURIEncurtada(IHttpContextAccessor _contextAccessor, string codigo = null)
@@ -82,20 +78,11 @@ public class EncurtadorService(
         var protocol = _contextAccessor.HttpContext.Request.Scheme;
 
         var routeApi = Environment.GetEnvironmentVariable("ROUTE_API") ?? string.Empty;
-
         routeApi = routeApi != string.Empty ? $"/{routeApi}" : string.Empty;
 
         var host = $"{_contextAccessor.HttpContext.Request.Host}{routeApi}";
-
         var urlEncurtada = $"{protocol}://{host}/{codigo}";
 
-        Console.WriteLine($"Protocolo {protocol}");
-        Console.WriteLine($"host {host}");
-        Console.WriteLine($"routeAPI {Environment.GetEnvironmentVariable("ROUTE_API")}");
-        Console.WriteLine($"codigo {codigo}");
-
-        Console.WriteLine($"{urlEncurtada}");
         return urlEncurtada;
     }
-
 }

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encurtei.API", "Encurtei.API\Encurtei.API.csproj", "{BB56E20E-7255-4DFA-BA6B-E21CAF92FB33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encurtei.API", "Encurtei.API\Encurtei.API.csproj", "{BB56E20E-7255-4DFA-BA6B-E21CAF92FB33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encurtei.Data", "Encurtei.Data\Encurtei.Data.csproj", "{4692DA6E-DD16-4DF9-AED3-FDDEC7BFFD5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encurtei.Data", "Encurtei.Data\Encurtei.Data.csproj", "{4692DA6E-DD16-4DF9-AED3-FDDEC7BFFD5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encurtei.Testes", "Encurtei.Testes\Encurtei.Testes.csproj", "{A3982E64-E048-4798-BF61-1389E9399249}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4692DA6E-DD16-4DF9-AED3-FDDEC7BFFD5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4692DA6E-DD16-4DF9-AED3-FDDEC7BFFD5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4692DA6E-DD16-4DF9-AED3-FDDEC7BFFD5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3982E64-E048-4798-BF61-1389E9399249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3982E64-E048-4798-BF61-1389E9399249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3982E64-E048-4798-BF61-1389E9399249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3982E64-E048-4798-BF61-1389E9399249}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
