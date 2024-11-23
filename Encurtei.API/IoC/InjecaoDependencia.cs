@@ -24,7 +24,7 @@ public static class InjecaoDependencia
 
     private static void InjetarServicos()
     {   
-        services.AddHttpContextAccessor();
+        _services.AddHttpContextAccessor();
         _services.AddScoped<IEncurtadorService, EncurtadorService>();
     }
 
