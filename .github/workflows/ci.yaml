@@ -37,8 +37,3 @@ jobs:
       - name: build project.
         run: dotnet build
         
-  segundo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: listando o arquivo de novo 
-        run: ls
