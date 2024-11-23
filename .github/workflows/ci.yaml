@@ -21,7 +21,12 @@ jobs:
           
       - name: listando arquivos.
         run: ls
-        
-      - name: build project.
+      
+      - name: Instalando dependencias.
+        run: dotnet restore
+
+      - name: build.
         run: dotnet build
         
+      - name: Rodando os testes.
+        run: dotnet test
