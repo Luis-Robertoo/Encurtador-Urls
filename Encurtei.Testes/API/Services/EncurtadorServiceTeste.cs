@@ -34,7 +34,7 @@ public class EncurtadorServiceTeste
 
 
         //Assert
-        Assert.Null(codigo);
+        Assert.NotNull(codigo);
         Assert.NotEmpty(codigo);
         Assert.InRange(codigo.Length, 5, 10);
     }
