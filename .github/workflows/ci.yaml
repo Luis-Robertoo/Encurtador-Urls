@@ -34,19 +34,19 @@ jobs:
       - name: Criando release
         run: dotnet publish -o './Release' 
 
-      - name: navegando
-        run: ls && cd Release && ls
+      - name: listando
+        run: ls
         
       - name: Upload de Artefato
         uses: actions/upload-artifact@v4
         with:
-          name: my-artifact
-          path: path/to/artifact/ # or path/to/artifact
+          name: Artefatos da Release
+          path: Release
           
-      - name: Download de Artefato 
-        uses: actions/download-artifact@v4
-        with:
-          name: meu-artefato
+      #- name: Download de Artefato 
+      #  uses: actions/download-artifact@v4
+      #  with:
+      #    name: meu-artefato
           
       - name: exibindo a estrutura dos arquivos baixados
         run: ls
