@@ -37,8 +37,6 @@ jobs:
       - name: navegando
         run: cd Encurtador-Urls && ls
         
-
-        
       - name: Upload de Artefato
       - uses: actions/upload-artifact@v4
         with:
