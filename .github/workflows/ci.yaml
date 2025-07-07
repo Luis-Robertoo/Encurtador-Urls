@@ -30,3 +30,14 @@ jobs:
         
       - name: Rodando os testes.
         run: dotnet test
+
+      - name: Download de Artefato 
+        uses: actions/download-artifact@v4
+        with:
+          name: meu-artefato
+          
+      - name: exibindo a estrutura dos arquivos baixados
+        run: ls -
+
+
+            
