@@ -31,11 +31,13 @@ jobs:
       - name: Rodando os testes.
         run: dotnet test
         
-      - name: listando arquivos.
+      - name: listando arquivos 2
         run: ls 
 
       - name: navegando
         run: cd Encurtador-Urls && ls
+        
+
         
       - name: Upload de Artefato
       - uses: actions/upload-artifact@v4
